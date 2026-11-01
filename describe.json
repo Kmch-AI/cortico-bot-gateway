@@ -1,0 +1,35 @@
+{
+  "tools": [
+    {
+      "name": "end_turn",
+      "description": "End this turn: nothing more you want to say or do right now. New events will wake you again. This is the normal way to finish a turn.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "tags": [
+        "flow"
+      ],
+      "summary": {
+        "zh": "结束这一轮,等新事件再醒。",
+        "en": "Ends the turn until a new event arrives."
+      }
+    }
+  ],
+  "bot": {
+    "worlds": [
+      "console",
+      "qq",
+      "voice",
+      "service"
+    ],
+    "memory": {
+      "name": "MEMORY.md",
+      "form": {
+        "zh": "尚未实现。v0.1 只留 memoryDir 与 blobs/ 作为挂载点;唯一的持久状态是 session 日志。",
+        "en": "Not implemented yet. v0.1 only reserves memoryDir and blobs/ as mount points; the session log is the only persistence."
+      }
+    }
+  }
+}
