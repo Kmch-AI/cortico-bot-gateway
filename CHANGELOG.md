@@ -1,6 +1,7 @@
 ## 0.1.0
 
 - 初版网关 bot:人设、情绪基调、能力路由与 `end_turn`。
+- 显示名统一为 `Kmch AI · 网关`(bot 默认名与 Persona 页标签)。
 - 声明 `console`、`qq`、`voice`、`service` 四个 World。
 - 前缀写入 QQ 语音交付链:`voice_speak({ silent: true })` → `[blob log:…]` → `qq_draft` → `qq_confirm`;失败退回文字。
 - 记忆未实现:只留 `memoryDir`、`FileBlobStore` 与 `MEMORY.seed.md`,不提供记忆工具或页面。

@@ -46,7 +46,7 @@ describe('Gateway bot', () => {
     expect(definition.memoryName).toBe('MEMORY.md');
     expect(definition.declares).toEqual(['console', 'qq', 'voice', 'service']);
     const defaults = definition.defaults();
-    expect(defaults.displayName).toBe('Kmch AI');
+    expect(defaults.displayName).toBe('Kmch AI · 网关');
     expect(defaults.rounds).toEqual({ soft: 6, hard: 12 });
   });
 

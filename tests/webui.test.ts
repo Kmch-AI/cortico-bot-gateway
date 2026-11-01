@@ -50,7 +50,7 @@ async function statusOf(page: WebUiPageContribution): Promise<CapabilitiesPayloa
 describe('能力状态页', () => {
   it('声明 persona:gateway,面板 gateway 只开放 status,贡献本身合规', () => {
     const page = pageOf([]);
-    expect(page).toMatchObject({ id: 'persona:gateway', kind: 'persona', label: '网关' });
+    expect(page).toMatchObject({ id: 'persona:gateway', kind: 'persona', label: 'Kmch AI · 网关' });
     expect(page.panels).toEqual([{ id: 'gateway', title: '能力', getMethods: ['status'] }]);
     expect(validateContributions([page])).toEqual([]);
   });

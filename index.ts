@@ -25,7 +25,7 @@ function gatewayPages(loaded: LoadedConfig<GatewayConfig>, worlds: World[]): Web
     {
       id: 'persona:gateway',
       kind: 'persona',
-      label: '网关',
+      label: 'Kmch AI · 网关',
       panels: [{ id: 'gateway', title: '能力', getMethods: ['status'] }],
       invoke: async (panel, method) => {
         if (panel !== 'gateway' || method !== 'status') {
@@ -58,7 +58,7 @@ const definition: BotDefinition<GatewayConfig> = {
   declares: DECLARES,
   defaults: () => ({
     ...structuredClone(CORE_DEFAULTS),
-    displayName: 'Kmch AI',
+    displayName: 'Kmch AI · 网关',
     rounds: { soft: 6, hard: 12 },
   }),
   build,
