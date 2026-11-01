@@ -14,7 +14,10 @@
     "cortico",
     "gateway",
     "voice",
-    "qq"
+    "qq",
+    "网关",
+    "语音",
+    "人设"
   ],
   "engines": {
     "node": ">=22"
