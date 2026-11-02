@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import type {
   BlobStore,
   CoreApi,
+  OutputTap,
   Persona,
   PrefixSegment,
   RoundCaps,
@@ -16,6 +17,7 @@ import type {
   ToolDef,
   World,
 } from 'cortico/core/types.ts';
+import { defaultExternalizes } from 'cortico/core/types.ts';
 import { renderTemplate } from 'cortico/core/template.ts';
 import { readTextFile } from 'cortico/core/util.ts';
 import { FileBlobStore } from './blobs.ts';
@@ -89,6 +91,7 @@ export class GatewayPersona implements Persona {
   }
 
   declareSessions(): SessionDecl[] {
+    const self = this;
     return [
       {
         id: MAIN,
@@ -96,10 +99,31 @@ export class GatewayPersona implements Persona {
         rounds: this.opts.rounds,
         persistent: true,
         receivesEvents: true,
+        // World 的接收器扇入主 session;语音的自动朗读靠它拿到正文。
+        get outputTap() { return self.outputTap(); },
         // World 的工具在前、自有工具在后:工具表顺序影响请求前缀的缓存命中。
         tools: () => [...this.opts.worlds.flatMap((w) => w.tools()), endTurnTool()],
       },
     ];
+  }
+
+  /**
+   * 主 session 的输出旁路:挂载 World 的接收器扇成一个 tap。没有任何接收器时不声明。
+   * 每批投递时现取,World 运行中挂载/卸载即生效。
+   */
+  private outputTap(): OutputTap | undefined {
+    const taps = this.opts.worlds.flatMap((world) => {
+      const tap = world.outputTap?.();
+      return tap ? [tap] : [];
+    });
+    if (taps.length === 0) return undefined;
+    if (taps.length === 1) return taps[0];
+    return {
+      onEvent: (event) => { for (const tap of taps) tap.onEvent(event); },
+      externalizes: (event) => taps.some((tap) => (tap.externalizes?.(event) ?? defaultExternalizes(event))),
+      onRoundEnd: () => { for (const tap of taps) tap.onRoundEnd?.(); },
+      onAbort: (reason) => { for (const tap of taps) tap.onAbort?.(reason); },
+    };
   }
 
   /** 自有工具名;装配层据此拒绝与之撞名的 World。 */

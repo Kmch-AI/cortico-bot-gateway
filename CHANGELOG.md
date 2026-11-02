@@ -1,3 +1,7 @@
+## 0.1.1
+
+- 主 session 重新声明 `outputTap`,把挂载 World 的接收器扇进来。语音 World 的概率自动朗读此前在网关 bot 里完全拿不到主 session 正文,只有显式 `voice_speak` 工具能出声;现在纯文本回复能按语音 World 的概率触发。
+
 ## 0.1.0
 
 - 初版网关 bot:人设、情绪基调、能力路由与 `end_turn`。

@@ -31,6 +31,6 @@ Live2D 的安装、启用与配置状态，并链接到对应的 World 页或扩
 
 - 工具只有各 World 的加 `end_turn`；不提供记忆工具，也没有 Memory 页。
 - `MEMORY.md` 只是以后挂记忆的落点，v0.1 不读写它。
-- 是否自动朗读由语音 World 的概率决定，网关不重复掷骰子。
+- 是否自动朗读由语音 World 的概率决定，网关不重复掷骰子；主 session 把挂载 World 的 `outputTap` 扇进来，语音才拿得到正文。
 - QQ 语音走显式工具链:`voice_speak({ silent: true })` → `[blob log:…]` →
   `qq_draft({ voice, to })` → `qq_confirm`；失败时退回文字。
