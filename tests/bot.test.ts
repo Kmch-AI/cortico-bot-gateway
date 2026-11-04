@@ -69,14 +69,14 @@ describe('Gateway bot', () => {
   });
 
   it('一个常驻 session 收事件,end_turn 在工具表末尾', () => {
-    const voice = worldWith('voice', ['voice_speak', 'voice_style']);
+    const voice = worldWith('voice', ['voice_speak', 'voice_hush']);
     const p = persona([voice]);
     const sessions = p.declareSessions();
     expect(sessions).toHaveLength(1);
     const main = sessions[0];
     expect(main.persistent).toBe(true);
     expect(main.receivesEvents).toBe(true);
-    expect(main.tools().map((tool) => tool.name)).toEqual(['voice_speak', 'voice_style', 'end_turn']);
+    expect(main.tools().map((tool) => tool.name)).toEqual(['voice_speak', 'voice_hush', 'end_turn']);
     expect(main.tools().at(-1)?.endsTurn).toBe(true);
   });
 

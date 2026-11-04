@@ -1,3 +1,8 @@
+## 0.1.2
+
+- 配合语音 0.5.0 删除 `voice_style`：人设提示词不再让模型调用该工具，长期音色与默认情绪改在语音 World 的模型页设置。
+- 人设提示词与 README 不再声称语音 World 会按概率自动朗读；需要出声时显式调用 `voice_speak`。
+
 ## 0.1.1
 
 - 主 session 重新声明 `outputTap`,把挂载 World 的接收器扇进来。语音 World 的概率自动朗读此前在网关 bot 里完全拿不到主 session 正文,只有显式 `voice_speak` 工具能出声;现在纯文本回复能按语音 World 的概率触发。

@@ -1,6 +1,6 @@
 {
   "name": "@kmchai/cortico-bot-gateway",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Cortico bot: Kmch AI gateway persona that declares voice, service and QQ capabilities",
   "author": "kmchai",
